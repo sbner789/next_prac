@@ -14,13 +14,13 @@ app.use("/posts", postRouter);
 
 app.get("/", (req, res) => res.send("SSR Board API is running"));
 
-const PORT = process.env.PORT || 4000;
+const PORT = Number(process.env.PORT) || 4000
 
 AppDataSource.initialize()
 .then(() => {
     console.log("Data Source initialized");
-app.listen(PORT, () => {
-    console.log(`Server listening on http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server listening on http://0.0.0.0:${PORT}`);
 });
 })
 .catch((err) => {
