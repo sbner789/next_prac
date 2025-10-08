@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { AppDataSource } from "./data-source";
 import postRouter from "./routes/postRoutes";
 import authRouter from "./routes/authRoutes";
+import commentRouter from "./routes/commentRoutes";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/posts", postRouter);
 app.use("/auth", authRouter);
+app.use("/comments", commentRouter);
 
 app.get("/", (req, res) => res.send("SSR Board API is running"));
 

@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Comment } from "./Comment";
+import { Post } from "./Post";
 
 @Entity()
 export class User {
@@ -19,4 +21,10 @@ export class User {
 
   @Column({ type: "varchar", nullable: true })
   verificationCode?: string; // 6자리 인증 코드
+
+  @OneToMany(() => Post, post => post.author)
+  posts!: Post[];
+
+  @OneToMany(() => Comment, comment => comment.author)
+  comments!: Comment[];
 }
